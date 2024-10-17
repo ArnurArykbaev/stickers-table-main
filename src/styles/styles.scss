@@ -1,0 +1,193 @@
+@import "@/styles/helpers/variables";
+@import "@/styles/helpers/fonts";
+@import "@/styles/helpers/null";
+
+:root {
+  color-scheme: light dark;
+  background-color: $bg-color;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    height: 100%;
+    background-color: $black;
+}
+
+#app {
+    font-family: $font;
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    color: $white;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.layout {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer-layout {
+    background: $black;
+    width: 100%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 10px;
+
+    @media (max-width: 360px) {
+        padding-bottom: 0px;
+    }
+}
+.component-wrapper {
+  margin-top: 80px;
+
+  @media (max-width: 728px) {
+    margin-top: 50px;
+  }
+  @media (max-width: 485px) {
+    margin-top: 40px;
+  }
+}
+
+h1 {
+    font-family: $font_xl;
+    font-size: 68px;
+    font-style: normal;
+    line-height: normal;
+
+    @media (max-width: 991px) {
+        font-size: 56px;
+    }
+    @media (max-width: 640px) {
+        font-size: 42px;
+    }
+    @media (max-width: 480px) {
+        font-size: 36px;
+    }
+}
+
+h2 {
+    font-family: $font_xl;
+    font-size: 40px;
+    font-style: normal;
+    line-height: normal;
+
+    @media (max-width: 1280px){
+      font-size: 34px;
+    }
+    @media (max-width: 729px){
+      font-size: 31px;
+    }
+    @media (max-width: 660px){
+      font-size: 27px;
+    }
+    @media (max-width: 574px) {
+      font-size: 22px;
+    }
+    @media (max-width: 500px) {
+        font-size: 20px;
+    }
+    @media (max-width: 400px) {
+      font-size: 17px;
+    }
+    @media (max-width: 360px) {
+      font-size: 15px;
+    }
+    @media (max-width: 320px) {
+      font-size: 13px;
+    }
+}
+
+ h5 {
+    font-family: $font_xl;
+    font-size: 40px;
+    font-style: normal;
+    line-height: normal;
+
+    @media (max-width: 768px) {
+        font-size: 32px;
+    }
+
+    @media (max-width: 485px) {
+        font-size: 24px;
+    }
+}
+
+h3 {
+    font-family: $font_semi;
+    font-size: 28px;
+    font-style: normal;
+    line-height: normal;
+
+    @media (max-width: 987px) {
+        font-size: 24px;
+    }
+
+    @media (max-width: 485px) {
+        font-size: 20px;
+    }
+}
+
+h4 {
+    font-family: $font_semi;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  font-weight: 500;
+  color: $secondary;
+  text-decoration: inherit;
+}
+a:hover {
+  color: $secondary-hover;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $dark;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: $secondary;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
