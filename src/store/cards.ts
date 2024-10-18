@@ -1,40 +1,35 @@
-import { vue } from '@vitejs/plugin-vue';
-import { defineStore } from "pinia";
-import { ref, Ref } from "vue";
-import { Card } from "@/models/card.ts"
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
+import { Card } from '@/models/card.ts';
 
-export const useCardsStore = defineStore("cardsStore", () => {
-    /* state */
-    const card: Ref<Card> = ref({ id: null, text: '', column: 1 })
-    const cardList: Ref<Card[]> = ref([
-        { id: 1, text: 'Card example', column: 1 },
-        { id: 2, text: 'Card example 2', column: 1 },
-        { id: 3, text: 'Card example 3', column: 2 },
-    ])
-
-    /* getters */
-    const getCardList = () => cardList.value as Card[];
-    const setCardList = (newCardList: Card[]) => {
-        cardList.value = newCardList
-    }
-
-    const addCard = (newCard: Card) => {
-        cardList.value.push(newCard)
-    }
-    const updateCard = (updatedCard: Card) => {
-        cardList.value = cardList.value.map(card => 
-            card.id === updatedCard.id ? updatedCard : card
-        );
-    };
-    const removeCard = (cardId: number) => {
-        cardList.value = cardList.value.filter(card => card.id !== cardId);
-    };
-    return {
-        getCardList,
-        setCardList,
-
-        addCard,
-        updateCard,
-        removeCard
-    }
-})
+export const useCardsStore = defineStore('cardsStore', {
+    state: () => ({
+        card: { id: null, title: '', text: '', column: 1 } as Card,
+        cardList: [
+            { id: 1, title: 'Title', text: 'Card example', column: 1 },
+            { id: 2, title: 'Title', text: 'Card example 2', column: 1 },
+            { id: 3, title: 'Title', text: 'Card example 3', column: 2 },
+        ] as Card[],
+    }),
+    persist: true,
+    actions: {
+        getCardList() {
+            return this.cardList;
+        },
+        setCardList(newCardList: Card[]) {
+            this.cardList = newCardList;
+        },
+        addCard(newCard: Card) {
+            console.log('Добавляем карточку:', newCard);
+            this.cardList.push(newCard);
+        },
+        updateCard(updatedCard: Card) {
+            this.cardList = this.cardList.map(card =>
+                card.id === updatedCard.id ? updatedCard : card
+            );
+        },
+        removeCard(cardId: number) {
+            this.cardList = this.cardList.filter(card => card.id !== cardId);
+        },
+    },
+});

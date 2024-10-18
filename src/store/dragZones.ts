@@ -1,34 +1,33 @@
-import { defineStore } from "pinia";
-import { ref, Ref } from "vue";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 import { dragZoneTitle } from '@/models/dragZone';
 
-export const useDragZonesStore = defineStore("dragZonesStore", () => {
-    /* state */
-    const dragZone: Ref<dragZoneTitle> = ref({id: 1, text: 'new drag zone', column: 1});
-    const dragZones: Ref<dragZoneTitle[]> = ref([{ id: 1, text: 'drag zone 1', column: 1 }, { id: 2, text: 'drag zone 2', column: 2 }])
-    /* getters */
-    const getDragZones = () => dragZones.value as dragZoneTitle[];
-    const setDragZones = (newDragZones: dragZoneTitle[]) => {
-        dragZones.value = newDragZones
-    }
-
-    const addDragZoneTitle = (newDragZone: dragZoneTitle) => {
-        dragZones.value.push(newDragZone)
-    }
-    const updateDragZoneTitle = (updateDragZoneTitle: dragZoneTitle) => {
-        dragZones.value = dragZones.value.map(dragItem => 
-            dragItem.id === updateDragZoneTitle.id ? updateDragZoneTitle : dragItem
-        );
-    };
-    const removeDragZoneTitle = (dragZoneId: number) => {
-        dragZones.value = dragZones.value.filter(dragItem => dragItem.id !== dragZoneId);
-    };
-    return {
-        getDragZones,
-        setDragZones,
-
-        addDragZoneTitle,
-        updateDragZoneTitle,
-        removeDragZoneTitle
-    }
-})
+export const useDragZonesStore = defineStore('dragZonesStore', {
+    state: () => ({
+        dragZone: { id: 1, text: 'new drag zone', column: 1 } as dragZoneTitle,
+        dragZones: [
+            { id: 1, text: 'drag zone 1', column: 1 },
+            { id: 2, text: 'drag zone 2', column: 2 },
+        ] as dragZoneTitle[],
+    }),
+    persist: true,
+    actions: {
+        getDragZones() {
+            return this.dragZones;
+        },
+        setDragZones(newDragZones: dragZoneTitle[]) {
+            this.dragZones = newDragZones;
+        },
+        addDragZoneTitle(newDragZone: dragZoneTitle) {
+            this.dragZones.push(newDragZone);
+        },
+        updateDragZoneTitle(updatedDragZone: dragZoneTitle) {
+            this.dragZones = this.dragZones.map(dragItem =>
+                dragItem.id === updatedDragZone.id ? updatedDragZone : dragItem
+            );
+        },
+        removeDragZoneTitle(dragZoneId: number) {
+            this.dragZones = this.dragZones.filter(dragItem => dragItem.id !== dragZoneId);
+        },
+    },
+});
