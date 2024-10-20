@@ -4,14 +4,14 @@
             <div class="header-container">
                 <div class="header-left">
                     <router-link :to="{ name: 'home' }">
-                        <a href="/" class="logo">Board</a>
+                        <a class="logo">Board</a>
                     </router-link>
                 </div>
                 <nav class="header-nav">
                     <ul>
                         <router-link :to="{ name: 'settings' }">
                             <li>
-                                <a href="/settings">Settings</a>
+                                <a>Settings</a>
                             </li>
                         </router-link>
                     </ul>

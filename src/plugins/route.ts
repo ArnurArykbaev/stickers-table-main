@@ -11,7 +11,7 @@ export function setupRouter() {
     ]
 
     const router = createRouter({
-        history: createWebHistory(),
+        history: createWebHistory('/stickers-table-main/'),
         routes,
     });
 
