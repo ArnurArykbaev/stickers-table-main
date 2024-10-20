@@ -3,11 +3,17 @@
         <div class="container">
             <div class="header-container">
                 <div class="header-left">
-                    <a href="/" class="logo">Board</a>
+                    <router-link :to="{ name: 'home' }">
+                        <a href="/" class="logo">Board</a>
+                    </router-link>
                 </div>
                 <nav class="header-nav">
                     <ul>
-                        <li><a href="/settings">Settings</a></li>
+                        <router-link :to="{ name: 'settings' }">
+                            <li>
+                                <a href="/settings">Settings</a>
+                            </li>
+                        </router-link>
                     </ul>
                 </nav>
                 <div class="header-right">

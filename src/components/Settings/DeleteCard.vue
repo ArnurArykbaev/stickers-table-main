@@ -29,16 +29,20 @@ import { useCardsStore } from '@/store/cards'
 import Modal from '@/components/ui/Modal.vue';
 
 interface Props {
-    modelValue: Boolean;
+    modelValue: boolean;
     card: Card;
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits(['close']);
+const emit = defineEmits<{
+    (e: 'close'): void;
+    (e: 'update:modelValue', value: boolean): void;
+}>();
+
 
 const cardStore = useCardsStore()
 
-const updateValue = (value) => {
+const updateValue = (value: boolean) => {
     emit('update:modelValue', value);
     if (!value) {
         emit('close');
@@ -97,7 +101,7 @@ const closeModal = () => {
                 border-radius: 5px;
 
                 &:hover {
-                    background-color: darken($dark, 10%);
+        background-color: $dark;
                     color: $white;
                 }
             }
@@ -113,7 +117,7 @@ const closeModal = () => {
                 border-radius: 5px;
 
                 &:hover {
-                    background-color: darken($dark, 10%);
+        background-color: $dark;
                 }
             }
         }

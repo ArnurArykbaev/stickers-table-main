@@ -7,6 +7,7 @@ import { dirname } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/stickers-table-main/',
   plugins: [vue()],
   resolve: {
     alias: {

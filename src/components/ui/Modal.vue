@@ -16,7 +16,7 @@
 <script setup lang="ts">
 
 interface Props {
-    modelValue: boolean;
+    modelValue: Boolean;
     max?: number;
 }
 

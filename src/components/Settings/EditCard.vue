@@ -35,7 +35,11 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits(['close']);
+const emit = defineEmits<{
+    (e: 'close'): void;
+    (e: 'update:modelValue', value: boolean): void;
+}>();
+
 
 const cardStore = useCardsStore()
 const editedCard: Ref<Card> = ref({ id: null, title: '', text: '', column: 1 })
@@ -111,7 +115,7 @@ const updateCard = () => {
             border-radius: 5px;
 
             &:hover {
-                background-color: darken($dark, 10%);
+                background-color: $dark;
             }
         }
     }

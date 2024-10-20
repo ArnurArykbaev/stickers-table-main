@@ -17,6 +17,7 @@
     "zipson": "^0.2.12"
   },
   "devDependencies": {
+    "@types/node": "^22.7.7",
     "@vitejs/plugin-vue": "^5.1.4",
     "sass-embedded": "^1.79.5",
     "typescript": "^5.5.3",
