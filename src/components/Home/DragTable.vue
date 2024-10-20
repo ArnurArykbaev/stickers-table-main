@@ -57,10 +57,26 @@ const startDrag = (event, item) => {
 }
 
 const onDrop = (event, columnNumber) => {
-    const itemID = event.dataTransfer.getData('itemID ')
-    let item = cardsList.value.find((card) => card.id === +itemID)
-    item.column = columnNumber
-    cardsStore.updateCard(item)
+    const itemID = event.dataTransfer.getData('itemID')
+    const currentCardsList = JSON.parse(JSON.stringify(cardsStore.getCardList()))
+    let droppedCard = currentCardsList.find((card) => card.id === +itemID)
+    const droppedCardIndex = currentCardsList.findIndex((item) => +item.id === +droppedCard.id)
+    const nextCard = event.toElement.closest('.drag-card')
+    let nextCardIndex
+    if (!nextCard || !nextCard.id) {
+        droppedCard.column = columnNumber
+        cardsStore.updateCard(droppedCard)
+        return
+    }
+    console.log('nextCardId', nextCard.id)
+    console.log('currentCardsList', currentCardsList)
+    nextCardIndex = currentCardsList.findIndex((item) => +item.id === +nextCard.id)
+    console.log('nextCardIndex', currentCardsList[nextCardIndex], nextCardIndex)
+
+    droppedCard.column = columnNumber
+    currentCardsList.splice(droppedCardIndex, 1)
+    currentCardsList.splice(nextCardIndex, 0, droppedCard)
+    cardsStore.setCardList(currentCardsList)
 }
 
 const addDragZone = () => {

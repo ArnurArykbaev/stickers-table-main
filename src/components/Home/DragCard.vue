@@ -1,5 +1,5 @@
 <template>
-    <div class="drag-card" draggable="true" @dragstart="startDrag($event, card)" @dblclick="onEditCard"
+    <div class="drag-card" :id="props.card.id" draggable="true" @dragstart="startDrag($event, card)" @dblclick="onEditCard"
         v-click-outside="onClickOutside">
         <div v-if="editMode" class="edit-mode">
             <input v-model="editCard.title" @keypress.enter="saveEdit" class="title" type="text" />

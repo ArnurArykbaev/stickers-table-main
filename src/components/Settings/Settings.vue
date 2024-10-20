@@ -21,8 +21,12 @@
                         {{ card.text }}
                     </div>
                     <div class="column">{{ card.column }}</div>
-                    <button @click="onEditCard(card)" class="edit">Edit</button>
-                    <button @click="onDeleteCard(card.id)" class="delete">Delete</button>
+                    <button @click="onEditCard(card)" class="edit">
+                        <editIcon :width="'20px'" :color="'#a7a7a7'" />
+                    </button>
+                    <button @click="onDeleteCard(card)" class="delete">
+                        <deleteIcon :width="'20px'" :color="'#a7a7a7'" />
+                    </button>
                 </div>
                 <button @click="addNewCard(1)" class="btn-add-card">
                     Add new card
@@ -30,6 +34,7 @@
             </div>
         </div>
         <EditCardModal v-model="modal" :card="editCard" />
+        <DeleteCard v-model="deleteModal" :card="deleteCard" />
     </section>
 </template>
 
@@ -39,27 +44,33 @@ import { useCardsStore } from '@/store/cards';
 import { addNewCard } from '@/helpers/card';
 import { Card } from '@/models/card';
 import EditCardModal from './EditCard.vue';
+import DeleteCard from './DeleteCard.vue';
+import deleteIcon from '@/assets/deleteIcon.vue';
+import editIcon from '@/assets/editIcon.vue';
+
 
 const cardsStore = useCardsStore()
 const cardsList = computed(() => cardsStore.getCardList())
-const editCard = ref({id: null, title: '', text: '', column: null})
+const editCard = ref({ id: null, title: '', text: '', column: null })
+const deleteCard = ref({ id: null, title: '', text: '', column: null })
+const modal = ref(false)
+const deleteModal = ref(false)
 
 
-const modal = ref(false);
-const closeModal = () => {
-    editCard.value = null
-    modal.value = false
-}
-const openModal = () => {
+const openEditModal = () => {
     modal.value = true
 }
-
 const onEditCard = (card: Card) => {
     editCard.value = JSON.parse(JSON.stringify(card))
-    openModal()
+    openEditModal()
 }
-const onDeleteCard = (id) => {
-    cardsStore.removeCard(id)
+
+const openDeleteModal = () => {
+    deleteModal.value = true
+}
+const onDeleteCard = (card: Card) => {
+    deleteCard.value = JSON.parse(JSON.stringify(card))
+    openDeleteModal()
 }
 </script>
 
@@ -79,7 +90,7 @@ const onDeleteCard = (id) => {
     &-header,
     .card {
         display: grid;
-        grid-template-columns: 60px auto 100px 80px 80px;
+        grid-template-columns: 60px auto 100px 60px 60px;
         min-height: 50px;
         gap: 20px;
 

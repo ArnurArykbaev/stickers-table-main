@@ -7,11 +7,11 @@
                 </div>
                 <nav class="header-nav">
                     <ul>
-                        <li><a href="/settings">Настройки</a></li>
+                        <li><a href="/settings">Settings</a></li>
                     </ul>
                 </nav>
                 <div class="header-right">
-                    <a href="#">Тел: 8(777)-777-77-77</a>
+                    <a href="#">Phone: 8(777)-777-77-77</a>
                 </div>
             </div>
         </div>
