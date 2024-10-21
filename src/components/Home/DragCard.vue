@@ -1,6 +1,6 @@
 <template>
-    <div class="drag-card" :id="`${props.card.id}`" draggable="true" @dragstart="startDrag($event, card)" @dblclick="onEditCard"
-        v-click-outside="onClickOutside">
+    <div class="drag-card" :id="`${props.card.id}`" draggable="true" @dragstart="startDrag($event, card)"
+        @dblclick="onEditCard" v-click-outside="onClickOutside">
         <div v-if="editMode" class="edit-mode">
             <input v-model="editCard.title" @keypress.enter="saveEdit" class="title" type="text" />
             <textarea v-model="editCard.text" @keypress.enter="saveEdit" class="text"></textarea>
@@ -71,15 +71,34 @@ const onClickOutside = () => {
     text-align: left;
     border-radius: 20px;
     background-color: $dark;
+    overflow: auto;
+
+    @media (max-width: 480px) {
+        min-height: 150px;
+        padding: 10px;
+    }
+
 
     .show-mode {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        overflow: auto;
+        max-width: 200px;
+
+        @media (max-width: 480px) {
+            max-height: 130px;
+            overflow: auto;
+        }
 
         .title {
             word-wrap: break-word;
             font-size: $fz-lg;
+
+            @media (max-width: 480px) {
+                font-size: $fz-md;
+            }
+
         }
 
         .text {
@@ -118,5 +137,14 @@ const onClickOutside = () => {
             font-size: $fz-xs;
         }
     }
+}
+
+.drag-zone,
+.drag-card {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: none;
 }
 </style>

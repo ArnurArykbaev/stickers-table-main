@@ -28,6 +28,8 @@
 </script>
 
 <style lang="scss">
+@import "@/styles/helpers/_variables.scss";
+
 .header {
     display: grid;
     background-color: #333;
@@ -38,17 +40,31 @@
     right: 0;
     z-index: 1000;
 
+    @media (max-width: 480px) {
+        font-size: $fz-xs;
+    }
+
     &-container {
         display: grid;
         grid-template-columns: auto 1fr auto;
         gap: 40px;
         padding: 15px 0px;
+
+        @media (max-width: 480px) {
+            gap: 20px;
+        }
+
     }
 
     &-left .logo {
         text-decoration: none;
         color: #fff;
         font-size: 24px;
+
+        @media (max-width: 480px) {
+            font-size: $fz-md;
+        }
+
     }
 
     &-nav {
@@ -72,6 +88,11 @@
             text-decoration: none;
             color: #fff;
             font-size: 18px;
+
+            @media (max-width: 480px) {
+                font-size: $fz-xs;
+            }
+
         }
     }
 

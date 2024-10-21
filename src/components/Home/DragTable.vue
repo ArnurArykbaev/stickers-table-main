@@ -1,6 +1,6 @@
 <template>
     <section class="dragboard">
-        <div class="container">
+        <div class="dragboard-container container">
             <div class="dragtable" id="dragtable">
                 <template v-for="(dragZone, index) in dragZones" :key="dragZone.id">
                     <div class="drag-zone" @drop="onDrop($event, dragZone.column)" @dragenter.prevent @dragover.prevent>
@@ -109,11 +109,20 @@ const onClickOutside = () => {
     min-height: 760px;
     overflow: auto;
 
+    @media (max-width: 480px) {
+        column-gap: 10px;
+        padding: 10px;
+    }
+
     .drag-zone {
         display: flex;
         flex-direction: column;
         row-gap: 10px;
         min-width: 200px;
+
+        @media (max-width: 480px) {
+            min-width: 150px;
+        }
 
         button.btn-add-card {
             display: flex;
@@ -216,5 +225,9 @@ const onClickOutside = () => {
             }
         }
     }
+}
+
+.dragboard-container {
+    padding: 0;
 }
 </style>

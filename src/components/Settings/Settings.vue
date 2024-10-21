@@ -18,7 +18,7 @@
                         {{ index + 1 }}
                     </div>
                     <div class="card-name">
-                        {{ card.text }}
+                        <p>{{ card.title }}</p>
                     </div>
                     <div class="column">{{ card.column }}</div>
                     <button @click="onEditCard(card)" class="edit">
@@ -47,6 +47,7 @@ import EditCardModal from './EditCard.vue';
 import DeleteCard from './DeleteCard.vue';
 import deleteIcon from '@/assets/deleteIcon.vue';
 import editIcon from '@/assets/editIcon.vue';
+import { getShortText } from '@/helpers/helpers';
 
 
 const cardsStore = useCardsStore()
@@ -94,6 +95,19 @@ const onDeleteCard = (card: Card) => {
         min-height: 50px;
         gap: 20px;
 
+        @media (max-width: 600px) {
+            grid-template-columns: 60px auto 60px 60px;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: auto 60px 60px;
+        }
+
+        @media (max-width: 390px) {
+            grid-template-columns: auto 40px 40px;
+            gap: 5px;
+        }
+
         .number,
         .card-name,
         .column,
@@ -108,6 +122,31 @@ const onDeleteCard = (card: Card) => {
             border-radius: 10px;
             height: 100%;
             background-color: $bg-color;
+
+            @media (max-width: 390px) {
+                padding: 10px;
+            }
+        }
+
+        .card-name p {
+            text-align: left;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .number {
+            @media (max-width: 480px) {
+                display: none;
+            }
+        }
+
+        .column {
+            @media (max-width: 600px) {
+                display: none;
+            }
         }
     }
 
@@ -121,6 +160,18 @@ const onDeleteCard = (card: Card) => {
             background-color: $light;
             color: $black;
         }
+
+        .number {
+            @media (max-width: 480px) {
+                display: none;
+            }
+        }
+
+        .column {
+            @media (max-width: 600px) {
+                display: none;
+            }
+        }
     }
 
     &-body {
@@ -128,6 +179,11 @@ const onDeleteCard = (card: Card) => {
         flex-direction: column;
         gap: 20px;
         font-size: $fz-md;
+
+        @media (max-width: 390px) {
+            gap: 5px;
+        }
+
 
         button.btn-add-card {
             display: flex;
